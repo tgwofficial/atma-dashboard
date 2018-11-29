@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/u5373058/public_html/ard
+    - /bin/cp * $DEPLOYPATH
