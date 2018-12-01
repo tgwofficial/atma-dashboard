@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="pull-right hidden-xs">
                     <b><?php echo lang('footer_version'); ?></b> Development
                 </div>
-                <strong><?php echo lang('footer_copyright'); ?> &copy; <?php echo date('Y'); ?> <a href="http://almsaeedstudio.com" target="_blank">THESE Initiatives</a>. </strong> <?php echo lang('footer_all_rights_reserved'); ?>.
+                <strong><?php echo lang('footer_copyright'); ?> &copy; <?php echo date('Y'); ?> <a href="https://theseforall.org" target="_blank">THESE Initiatives</a>. </strong> <?php echo lang('footer_all_rights_reserved'); ?>.
             </footer>
         </div>
 
