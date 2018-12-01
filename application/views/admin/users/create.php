@@ -33,6 +33,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <?php echo lang('users_username', 'username', array('class' => 'col-sm-2 control-label')); ?>
+                                            <div class="col-sm-10">
+                                                <?php echo form_input($username);?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <?php echo lang('users_company', 'company', array('class' => 'col-sm-2 control-label')); ?>
                                             <div class="col-sm-10">
                                                 <?php echo form_input($company);?>

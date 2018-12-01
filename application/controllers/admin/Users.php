@@ -55,7 +55,8 @@ class Users extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('first_name', 'lang:users_firstname', 'required');
 		$this->form_validation->set_rules('last_name', 'lang:users_lastname', 'required');
-		$this->form_validation->set_rules('email', 'lang:users_email', 'required|valid_email|is_unique['.$tables['users'].'.email]');
+		$this->form_validation->set_rules('username', 'lang:users_username', 'required|is_unique['.$tables['users'].'.username]');
+		$this->form_validation->set_rules('email', 'lang:users_email', 'valid_email|is_unique['.$tables['users'].'.email]');
 		$this->form_validation->set_rules('phone', 'lang:users_phone', 'required');
 		$this->form_validation->set_rules('company', 'lang:users_company', 'required');
 		$this->form_validation->set_rules('password', 'lang:users_password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
@@ -63,7 +64,7 @@ class Users extends Admin_Controller {
 
 		if ($this->form_validation->run() == TRUE)
 		{
-			$username = strtolower($this->input->post('first_name')) . ' ' . strtolower($this->input->post('last_name'));
+			$username = $this->input->post('username');
 			$email    = strtolower($this->input->post('email'));
 			$password = $this->input->post('password');
 
@@ -97,6 +98,13 @@ class Users extends Admin_Controller {
 				'type'  => 'text',
                 'class' => 'form-control',
 				'value' => $this->form_validation->set_value('last_name'),
+			);
+			$this->data['username'] = array(
+				'name'  => 'username',
+				'id'    => 'username',
+				'type'  => 'text',
+                'class' => 'form-control',
+				'value' => $this->form_validation->set_value('username'),
 			);
 			$this->data['email'] = array(
 				'name'  => 'email',

@@ -78,7 +78,7 @@ class Auth extends MY_Controller {
                 $this->data['identity'] = array(
                     'name'        => 'identity',
                     'id'          => 'identity',
-                    'type'        => 'email',
+                    'type'        => 'text',
                     'value'       => $this->form_validation->set_value('identity'),
                     'class'       => 'form-control',
                     'placeholder' => lang('auth_your_email')
@@ -117,5 +117,17 @@ class Auth extends MY_Controller {
             redirect('/', 'refresh');
         }
 	}
+
+    function login_api()
+    {
+        if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), false))
+        {
+            echo 'success';
+        }
+        else
+        {
+            echo 'failed';
+        }
+    }
 
 }
