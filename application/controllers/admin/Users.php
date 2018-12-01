@@ -177,7 +177,7 @@ class Users extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('first_name', 'lang:edit_user_validation_fname_label', 'required');
 		$this->form_validation->set_rules('last_name', 'lang:edit_user_validation_lname_label', 'required');
-		$this->form_validation->set_rules('phone', 'lang:edit_user_validation_phone_label', 'required');
+		$this->form_validation->set_rules('phone', 'lang:edit_user_validation_phone_label', '');
 		$this->form_validation->set_rules('company', 'lang:edit_user_validation_company_label', 'required');
 
 		if (isset($_POST) && ! empty($_POST))
