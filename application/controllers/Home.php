@@ -11,6 +11,10 @@ class Home extends Public_Controller {
 
 	public function index()
 	{
-		$this->load->view('public/home', $this->data);
+		if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        redirect('admin', 'refresh');
 	}
 }
