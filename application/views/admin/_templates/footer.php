@@ -29,5 +29,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
         <script src="<?php echo base_url($frameworks_dir . '/adminlte/js/adminlte.min.js'); ?>"></script>
         <script src="<?php echo base_url($frameworks_dir . '/domprojects/js/dp.min.js'); ?>"></script>
+<?php if ($this->router->fetch_class() == 'reports'): ?>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready( function () {
+                    $('#myTable').DataTable();
+                } );
+            </script>
+<?php endif; ?>
     </body>
 </html>
