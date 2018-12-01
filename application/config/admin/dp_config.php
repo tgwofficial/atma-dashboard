@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['title']      = 'AdminLTE';
-$config['title_mini'] = 'LT';
-$config['title_lg']   = 'LTE';
+$config['title']      = 'Atma Dashboard';
+$config['title_mini'] = 'D';
+$config['title_lg']   = 'DASHBOARD';
 
 
 
