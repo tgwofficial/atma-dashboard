@@ -57,6 +57,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
                             </a>
                         </li>
+                        <li class="treeview <?=active_link_controller('reports')?>">
+                            <a href="#">
+                                <i class="fa fa-bar-chart"></i>
+                                <span><?php echo 'Reports'; ?></span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="<?=active_link_function('reports')?>"><a href="<?php echo site_url('admin/reports'); ?>"><?php echo 'Tabel'; ?></a></li>
+                                <li class="<?=active_link_function('graphs')?>"><a href="<?php echo site_url('admin/reports/graph'); ?>"><?php echo 'Grafik'; ?></a></li>
+                        </li>
                     </ul>
                 </section>
             </aside>
