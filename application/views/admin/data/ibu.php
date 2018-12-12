@@ -25,10 +25,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <th>Nama Suami</th>
                                                 <th>Tanggal Lahir</th>
                                                 <th>Dusun</th>
-                                                <th>HPHT</th>
                                                 <th>No Hp</th>
+                                                <th>Gol. Darah</th>
                                                 <th>Status</th>
-                                                <th>Kondisi</th>
+                                                <th>HPHT</th>
+                                                <th>HTP</th>
+                                                <th>Faktor Resiko</th>
+                                                <th>Jenis Transportasi</th>
+                                                <th>Hub.Dengan Pendonor</th>
+                                                <th>Tgl Melahirkan</th>
+                                                <th>Kondisi Ibu</th>
+                                                <th>Kondisi Anak</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -39,9 +46,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $faker->name('male'); ?></td>
                                                     <td><?php echo $faker->dateTimeThisCentury->format('Y-m-d'); ?></td>
                                                     <td><?php echo $faker->city; ?></td>
-                                                    <td><?php echo $faker->dateTimeThisYear($max = 'now', $timezone = null)->format('Y-m-d'); ?></td>
                                                     <td><?php echo $faker->phoneNumber; ?></td>
+                                                    <td><?php echo ['A','B','AB','O'][rand(0,3)]; ?></td>
                                                     <td><?php echo ['Hamil','Nifas','Hamil','Hamil'][rand(0,3)]; ?></td>
+                                                    <td><?php echo $faker->dateTimeThisYear($max = 'now', $timezone = null)->format('Y-m-d'); ?></td>
+                                                    <td><?php echo $faker->dateTimeThisYear($max = 'now', $timezone = null)->format('Y-m-d'); ?></td>
+                                                    <td><?php echo ['Resiko1','Resiko2','Resiko3','Resiko4'][rand(0,3)]; ?></td>
+                                                    <td><?php echo ['Mobil','Motor','Cidomo','Pick-up','Lainnya'][rand(0,4)]; ?></td>
+                                                    <td><?php echo ['Suami','Saudara','Tetangga','Kenalan','Lainnya'][rand(0,4)]; ?></td>
+                                                    <td><?php echo $faker->dateTimeThisYear($max = 'now', $timezone = null)->format('Y-m-d'); ?></td>
+                                                    <td><?php echo ['Hidup','Meninggal','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup'][rand(0,8)]; ?></td>
                                                     <td><?php echo ['Hidup','Meninggal','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup'][rand(0,8)]; ?></td>
                                                 </tr>
                                             <?php } ?>
