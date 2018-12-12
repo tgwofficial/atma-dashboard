@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['title']      = 'Atma Dashboard';
-$config['title_mini'] = 'D';
+$config['title']      = 'P4KDashboard';
+$config['title_mini'] = 'P4K';
 $config['title_lg']   = 'DASHBOARD';
 
 
