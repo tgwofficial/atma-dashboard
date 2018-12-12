@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <h3 class="box-title"><?php echo anchor('admin/users/create', '<i class="fa fa-plus"></i> '. lang('users_create_user'), array('class' => 'btn btn-block btn-primary btn-flat')); ?></h3>
                                 </div> -->
                                 <div class="box-body">
-                                    <table id="myTable" class="table table-striped table-hover">
+                                    <table id="myTable" class="table table-striped table-hover" title="Data Individual Pendonor">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>

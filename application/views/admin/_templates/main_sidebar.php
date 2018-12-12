@@ -34,27 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul class="sidebar-menu">
                         <li>
                             <a href="<?php echo "https://kie.atma.theseforall.org/"; ?>">
-                                <i class="fa fa-home text-primary"></i> <span><?php echo "WEBSITE KIE"; ?></span>
-                            </a>
-                        </li>
-
-                        <li class="header text-uppercase"><?php echo lang('menu_main_navigation'); ?></li>
-                        <li class="<?=active_link_controller('dashboard')?>">
-                            <a href="<?php echo site_url('admin/dashboard'); ?>">
-                                <i class="fa fa-dashboard"></i> <span><?php echo lang('menu_dashboard'); ?></span>
-                            </a>
-                        </li>
-
-
-                        <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
-                        <li class="<?=active_link_controller('users')?>">
-                            <a href="<?php echo site_url('admin/users'); ?>">
-                                <i class="fa fa-user"></i> <span><?php echo lang('menu_users'); ?></span>
-                            </a>
-                        </li>
-                        <li class="<?=active_link_controller('groups')?>">
-                            <a href="<?php echo site_url('admin/groups'); ?>">
-                                <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
+                                <i class="fa fa-home"></i> <span><?php echo "WEBSITE KIE"; ?></span>
                             </a>
                         </li>
                         <li class="treeview <?=active_link_controller('data')?>">
@@ -79,6 +59,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li class="<?=active_link_function('reports')?>"><a href="<?php echo site_url('admin/reports'); ?>"><?php echo 'Tabel'; ?></a></li>
                                 <li class="<?=active_link_function('graphs')?>"><a href="<?php echo site_url('admin/reports/graph'); ?>"><?php echo 'Grafik'; ?></a></li>
                             </ul>
+                        </li>
+
+                        <li class="header text-uppercase"><?php echo lang('menu_main_navigation'); ?></li>
+                        <li class="<?=active_link_controller('dashboard')?>">
+                            <a href="<?php echo site_url('admin/dashboard'); ?>">
+                                <i class="fa fa-dashboard"></i> <span><?php echo lang('menu_dashboard'); ?></span>
+                            </a>
+                        </li>
+
+
+                        <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
+                        <li class="<?=active_link_controller('users')?>">
+                            <a href="<?php echo site_url('admin/users'); ?>">
+                                <i class="fa fa-user"></i> <span><?php echo lang('menu_users'); ?></span>
+                            </a>
+                        </li>
+                        <li class="<?=active_link_controller('groups')?>">
+                            <a href="<?php echo site_url('admin/groups'); ?>">
+                                <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
+                            </a>
                         </li>
                     </ul>
                 </section>
