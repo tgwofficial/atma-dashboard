@@ -12,7 +12,6 @@ class Data extends Admin_Controller {
         $this->lang->load('admin/users');
 
         /* Title Page :: Common */
-        $this->page_title->push('Data');
         $this->data['pagetitle'] = $this->page_title->show();
 
         /* Breadcrumbs :: Common */
@@ -52,6 +51,8 @@ class Data extends Admin_Controller {
         }
         else
         {
+            $this->page_title->push('Data Ibu');
+            $this->data['pagetitle'] = $this->page_title->show();
             /* Breadcrumbs */
             $this->breadcrumbs->unshift(1, 'Ibu', 'admin/data/ibu');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
@@ -76,6 +77,8 @@ class Data extends Admin_Controller {
         }
         else
         {
+            $this->page_title->push('Data Bank Darah');
+            $this->data['pagetitle'] = $this->page_title->show();
             /* Breadcrumbs */
             $this->breadcrumbs->unshift(1, 'Bank Darah', 'admin/data/bankdarah');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
@@ -100,6 +103,8 @@ class Data extends Admin_Controller {
         }
         else
         {
+            $this->page_title->push('Data Transportasi');
+            $this->data['pagetitle'] = $this->page_title->show();
             /* Breadcrumbs */
             $this->breadcrumbs->unshift(1, 'Transportasi', 'admin/data/transportasi');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
