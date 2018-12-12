@@ -14,6 +14,7 @@ $lang['auth_sign_session']    = 'Sign in to start your session';
 $lang['auth_sign_facebook']   = 'Sign in using Facebook';
 $lang['auth_sign_google']     = 'Sign in using Google+';
 $lang['auth_your_email']      = 'Your email';
+$lang['auth_your_user']       = 'Your username';
 $lang['auth_your_password']   = 'Your password';
 $lang['auth_remember_me']     = 'Remember me';
 $lang['auth_forgot_password'] = 'I forgot my password';
