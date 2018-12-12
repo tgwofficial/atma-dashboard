@@ -33,8 +33,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <!-- Sidebar menu -->
                     <ul class="sidebar-menu">
                         <li>
-                            <a href="<?php echo site_url('/'); ?>">
-                                <i class="fa fa-home text-primary"></i> <span><?php echo lang('menu_access_website'); ?></span>
+                            <a href="<?php echo "https://kie.atma.theseforall.org/"; ?>">
+                                <i class="fa fa-home text-primary"></i> <span><?php echo "WEBSITE KIE"; ?></span>
                             </a>
                         </li>
 
@@ -57,6 +57,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
                             </a>
                         </li>
+                        <li class="treeview <?=active_link_controller('data')?>">
+                            <a href="#">
+                                <i class="fa fa-database"></i>
+                                <span><?php echo 'Data'; ?></span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="<?=active_link_function('ibu')?>"><a href="<?php echo site_url('admin/data/ibu'); ?>"><?php echo 'Ibu'; ?></a></li>
+                                <li class="<?=active_link_function('bankdarah')?>"><a href="<?php echo site_url('admin/data/bankdarah'); ?>"><?php echo 'Bank Darah'; ?></a></li>
+                                <li class="<?=active_link_function('transportasi')?>"><a href="<?php echo site_url('admin/data/transportasi'); ?>"><?php echo 'Transportasi'; ?></a></li>
+                            </ul>
+                        </li>
                         <li class="treeview <?=active_link_controller('reports')?>">
                             <a href="#">
                                 <i class="fa fa-bar-chart"></i>
@@ -66,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <ul class="treeview-menu">
                                 <li class="<?=active_link_function('reports')?>"><a href="<?php echo site_url('admin/reports'); ?>"><?php echo 'Tabel'; ?></a></li>
                                 <li class="<?=active_link_function('graphs')?>"><a href="<?php echo site_url('admin/reports/graph'); ?>"><?php echo 'Grafik'; ?></a></li>
+                            </ul>
                         </li>
                     </ul>
                 </section>
