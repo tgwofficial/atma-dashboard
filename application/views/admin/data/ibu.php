@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i=0; $i < 12; $i++) { ?>
+                                            <?php for ($i=0; $i < 100; $i++) { ?>
                                                 <tr>
                                                     <td><?php echo $i+1; ?></td>
                                                     <td><?php echo $faker->name('female'); ?></td>
