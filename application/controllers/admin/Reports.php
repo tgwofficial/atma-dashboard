@@ -19,8 +19,8 @@ class Reports extends Admin_Controller {
     }
 
 
-	public function index()
-	{
+    public function index()
+    {
         if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
         {
             redirect('auth/login', 'refresh');
@@ -39,6 +39,30 @@ class Reports extends Admin_Controller {
 
             /* Load Template */
             $this->template->admin_render('admin/reports/index', $this->data);
+        }
+    }
+
+
+	public function table()
+	{
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+            // /* Get all users */
+            // $this->data['users'] = $this->ion_auth->users()->result();
+            // foreach ($this->data['users'] as $k => $user)
+            // {
+            //     $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+            // }
+
+            /* Load Template */
+            $this->template->admin_render('admin/reports/table', $this->data);
         }
 	}
 

@@ -56,8 +56,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="<?=active_link_function('reports')?>"><a href="<?php echo site_url('admin/reports'); ?>"><?php echo 'Tabel'; ?></a></li>
-                                <li class="<?=active_link_function('graphs')?>"><a href="<?php echo site_url('admin/reports/graph'); ?>"><?php echo 'Grafik'; ?></a></li>
+                                <li class="<?=active_link_function('table')?>"><a href="<?php echo site_url('admin/reports/table'); ?>"><?php echo 'Tabel'; ?></a></li>
+                                <li class="<?=active_link_function('graph')?>"><a href="<?php echo site_url('admin/reports/graph'); ?>"><?php echo 'Grafik'; ?></a></li>
                             </ul>
                         </li>
 
