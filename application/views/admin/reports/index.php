@@ -93,40 +93,117 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </section>
             </div>
             <script type="text/javascript">
-                $('.opt').change(function() {
-                    if($('#bulan').val() == "Tahunan"){
-                        $('.val1').each(function(){
-                            $(this).html((Math.floor(Math.random() * 16) + 6)*9);
-                        });
-                        $('.val2').each(function(){
-                            $(this).html((Math.floor(Math.random() * 16) + 6)*9);
-                        });
-                        $('.val3').each(function(){
-                            $(this).html((Math.floor(Math.random() * 2) + 0)*2);
-                        });
-                        $('.val4').each(function(){
-                            $(this).html((Math.floor(Math.random() * 16) + 6)*9);
-                        });
-                        $('.val5').each(function(){
-                            $(this).html((Math.floor(Math.random() * 2) + 0)*2);
-                        });
-                    }
-                    else{
-                        $('.val1').each(function(){
-                            $(this).html(Math.floor(Math.random() * 16) + 6);
-                        });
-                        $('.val2').each(function(){
-                            $(this).html(Math.floor(Math.random() * 16) + 6);
-                        });
-                        $('.val3').each(function(){
-                            $(this).html(Math.floor(Math.random() * 2) + 0);
-                        });
-                        $('.val4').each(function(){
-                            $(this).html(Math.floor(Math.random() * 16) + 6);
-                        });
-                        $('.val5').each(function(){
-                            $(this).html(Math.floor(Math.random() * 2) + 0);
-                        });
-                    }
-                });
+                $(document).ready( function () {
+                    var myTable = $('#myTable').DataTable({
+                        "scrollX": true,
+                        "autoWidth": false,
+                        columnDefs: [
+                            { width: 100, targets: 5 }
+                        ],
+                        fixedColumns: true,
+                        scrollCollapse: true,
+                        dom: 'lfrtBip',
+                        buttons: [
+                        {
+                            extend: 'excel',
+                            title: $('#myTable').attr("title")
+                        },
+                        {
+                            extend: 'pdf',
+                            title: $('#myTable').attr("title")
+                        },
+                        {
+                            extend: 'print',
+                            title: $('#myTable').attr("title")
+                        }
+                        ]
+                    });
+
+                    $('.opt').change(function() {
+                        if($('#bulan').val() == "Tahunan"){
+                            $('.val1').each(function(){
+                                $(this).html((Math.floor(Math.random() * 16) + 6)*9);
+                            });
+                            $('.val2').each(function(){
+                                $(this).html((Math.floor(Math.random() * 16) + 6)*9);
+                            });
+                            $('.val3').each(function(){
+                                $(this).html((Math.floor(Math.random() * 2) + 0)*2);
+                            });
+                            $('.val4').each(function(){
+                                $(this).html((Math.floor(Math.random() * 16) + 6)*9);
+                            });
+                            $('.val5').each(function(){
+                                $(this).html((Math.floor(Math.random() * 2) + 0)*2);
+                            });
+                            myTable.destroy();
+                            myTable = $('#myTable').DataTable({
+                                "scrollX": true,
+                                "autoWidth": false,
+                                columnDefs: [
+                                    { width: 100, targets: 5 }
+                                ],
+                                fixedColumns: true,
+                                scrollCollapse: true,
+                                dom: 'lfrtBip',
+                                buttons: [
+                                {
+                                    extend: 'excel',
+                                    title: $('#myTable').attr("title")
+                                },
+                                {
+                                    extend: 'pdf',
+                                    title: $('#myTable').attr("title")
+                                },
+                                {
+                                    extend: 'print',
+                                    title: $('#myTable').attr("title")
+                                }
+                                ]
+                            });
+                        }
+                        else{
+                            $('.val1').each(function(){
+                                $(this).html(Math.floor(Math.random() * 16) + 6);
+                            });
+                            $('.val2').each(function(){
+                                $(this).html(Math.floor(Math.random() * 16) + 6);
+                            });
+                            $('.val3').each(function(){
+                                $(this).html(Math.floor(Math.random() * 2) + 0);
+                            });
+                            $('.val4').each(function(){
+                                $(this).html(Math.floor(Math.random() * 16) + 6);
+                            });
+                            $('.val5').each(function(){
+                                $(this).html(Math.floor(Math.random() * 2) + 0);
+                            });
+                            myTable.destroy();
+                            myTable = $('#myTable').DataTable({
+                                "scrollX": true,
+                                "autoWidth": false,
+                                columnDefs: [
+                                    { width: 100, targets: 5 }
+                                ],
+                                fixedColumns: true,
+                                scrollCollapse: true,
+                                dom: 'lfrtBip',
+                                buttons: [
+                                {
+                                    extend: 'excel',
+                                    title: $('#myTable').attr("title")
+                                },
+                                {
+                                    extend: 'pdf',
+                                    title: $('#myTable').attr("title")
+                                },
+                                {
+                                    extend: 'print',
+                                    title: $('#myTable').attr("title")
+                                }
+                                ]
+                            });
+                        }
+                    });
+                } );
             </script>

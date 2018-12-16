@@ -29,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url($frameworks_dir . '/adminlte/js/adminlte.min.js'); ?>"></script>
         <script src="<?php echo base_url($frameworks_dir . '/domprojects/js/dp.min.js'); ?>"></script>
 <?php if ($this->router->fetch_class() == 'reports' || $this->router->fetch_class() == 'data'): ?>
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -37,34 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-            <script type="text/javascript">
-                $(document).ready( function () {
-                    $('#myTable').DataTable({
-                        "scrollX": true,
-                        "autoWidth": false,
-                        columnDefs: [
-                            { width: 100, targets: 5 }
-                        ],
-                        fixedColumns: true,
-                        scrollCollapse: true,
-                        dom: 'lfrtBip',
-                        buttons: [
-                        {
-                            extend: 'excel',
-                            title: $('#myTable').attr("title")
-                        },
-                        {
-                            extend: 'pdf',
-                            title: $('#myTable').attr("title")
-                        },
-                        {
-                            extend: 'print',
-                            title: $('#myTable').attr("title")
-                        }
-                        ]
-                    });
-                } );
-            </script>
 <?php endif; ?>
     </body>
 </html>

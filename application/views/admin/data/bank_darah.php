@@ -49,3 +49,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </section>
             </div>
+            <script type="text/javascript">
+                $(document).ready( function () {
+                    var myTable = $('#myTable').DataTable({
+                        "scrollX": true,
+                        "autoWidth": false,
+                        columnDefs: [
+                            { width: 100, targets: 5 }
+                        ],
+                        fixedColumns: true,
+                        scrollCollapse: true,
+                        dom: 'lfrtBip',
+                        buttons: [
+                        {
+                            extend: 'excel',
+                            title: $('#myTable').attr("title")
+                        },
+                        {
+                            extend: 'pdf',
+                            title: $('#myTable').attr("title")
+                        },
+                        {
+                            extend: 'print',
+                            title: $('#myTable').attr("title")
+                        }
+                        ]
+                    });
+                } );
+            </script>
