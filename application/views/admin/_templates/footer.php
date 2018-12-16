@@ -40,6 +40,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <script type="text/javascript">
                 $(document).ready( function () {
                     $('#myTable').DataTable({
+                        "scrollX": true,
+                        "autoWidth": false,
+                        columnDefs: [
+                            { width: 100, targets: 5 }
+                        ],
+                        fixedColumns: true,
+                        scrollCollapse: true,
                         dom: 'lfrtBip',
                         buttons: [
                         {
