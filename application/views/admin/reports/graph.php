@@ -11,33 +11,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php echo $pagetitle; ?>
                     <?php echo $breadcrumb; ?>
                 </section>
-                <div class="form-row">
-                                  <div class="form-group col-md-4">
-                                      <label for="tahun">Tahun</label>
-                                      <select id="tahun" class="form-control">
-                                        <option>2018</option>
-                                        <option>2019</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group col-md-4">
-                                      <label for="bulan">Bulan</label>
-                                      <select id="bulan" class="form-control">
-                                        <option>Januari</option>
-                                        <option>Februari</option>
-                                        <option>Maret</option>
-                                        <option>April</option>
-                                        <option>Mei</option>
-                                        <option>Juni</option>
-                                        <option>Juli</option>
-                                        <option>Agustus</option>
-                                        <option>September</option>
-                                        <option>Oktober</option>
-                                        <option>November</option>
-                                        <option>Desember</option>
-                                        <option>Tahunan</option>
-                                    </select>
-                                  </div>
-                                </div>
+                <section class="content-header">
+                    <div class="row">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="desa">Desa</label>
+                                <select id="desa" class="form-control opt">
+                                    <option>Selebung</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="dusun">Dusun</label>
+                                <select id="dusun" class="form-control opt">
+                                    <option>Menges</option>
+                                    <option>Penandak</option>
+                                    <option>Menyiuh</option>
+                                    <option>Selebung Lauk</option>
+                                    <option>Selebung Daye</option>
+                                    <option>Selebung Tengak</option>
+                                    <option>Melar</option>
+                                    <option>Jali</option>
+                                    <option>Nyangget Lauk</option>
+                                    <option>Nyangget Daye</option>
+                                    <option>Pucung</option>
+                                    <option>Mekar Sari</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="content-header">
+                    <div class="row">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="tahun">Tahun</label>
+                                <select id="tahun" class="form-control opt">
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="bulan">Bulan</label>
+                                <select id="bulan" class="form-control opt">
+                                    <option>Januari</option>
+                                    <option>Februari</option>
+                                    <option>Maret</option>
+                                    <option>April</option>
+                                    <option>Mei</option>
+                                    <option>Juni</option>
+                                    <option>Juli</option>
+                                    <option>Agustus</option>
+                                    <option>September</option>
+                                    <option>Oktober</option>
+                                    <option>November</option>
+                                    <option>Desember</option>
+                                    <option>Tahunan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <section class="content">
                     <div class="row">
                         <div class="col-md-12">
@@ -156,10 +189,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                     }]
                 });
-                $('#bulan').change(function() {
+                $('.opt').change(function() {
                     chart1.showLoading();
                     chart2.showLoading();
-                    if($(this).val() == "Tahunan")
+                    if($('#bulan').val() == "Tahunan")
                     {
                         chart1.update({
                             xAxis: {
