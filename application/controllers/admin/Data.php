@@ -10,6 +10,7 @@ class Data extends Admin_Controller {
 
         /* Load :: Common */
         $this->lang->load('admin/users');
+        $this->load->model('data/datamodel','datamodel');
 
         /* Title Page :: Common */
         $this->data['pagetitle'] = $this->page_title->show();
@@ -57,12 +58,8 @@ class Data extends Admin_Controller {
             $this->breadcrumbs->unshift(1, 'Ibu', 'admin/data/ibu');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
-            // /* Get all users */
-            // $this->data['users'] = $this->ion_auth->users()->result();
-            // foreach ($this->data['users'] as $k => $user)
-            // {
-            //     $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-            // }
+            // /* Get all ibu */
+            $this->data['ibus'] = $this->datamodel->get_data_ibu();
 
             /* Load Template */
             $this->template->admin_render('admin/data/ibu', $this->data);
@@ -84,11 +81,7 @@ class Data extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             // /* Get all users */
-            // $this->data['users'] = $this->ion_auth->users()->result();
-            // foreach ($this->data['users'] as $k => $user)
-            // {
-            //     $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-            // }
+            $this->data['banks'] = $this->datamodel->get_data_bank_darah();
 
             /* Load Template */
             $this->template->admin_render('admin/data/bank_darah', $this->data);
@@ -110,11 +103,7 @@ class Data extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             // /* Get all users */
-            // $this->data['users'] = $this->ion_auth->users()->result();
-            // foreach ($this->data['users'] as $k => $user)
-            // {
-            //     $this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-            // }
+            $this->data['trans'] = $this->datamodel->get_data_transportasi();
 
             /* Load Template */
             $this->template->admin_render('admin/data/transportasi', $this->data);

@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i=0; $i < 36; $i++) { ?>
+                                            <?php if($this->ion_auth->in_group("demo")) { for ($i=0; $i < 36; $i++) { ?>
                                                 <tr>
                                                     <td><?php echo $i+1; ?></td>
                                                     <td><?php echo $faker->name; ?></td>
@@ -40,7 +40,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $faker->phoneNumber; ?></td>
                                                     <td><?php echo $faker->dateTimeThisYear($max = 'now', $timezone = null)->format('Y-m-d'); ?></td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php }} else{ $i=0; foreach ($banks as $key => $bank) {
+                                                $gol = explode("-", $bank->gol_darah);
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $i+1; ?></td>
+                                                    <td><?php echo $bank->name; ?></td>
+                                                    <td><?php echo $gol[0]; ?></td>
+                                                    <td><?php echo $gol[1]; ?></td>
+                                                    <td><?php echo $bank->dusun; ?></td>
+                                                    <td><?php echo $bank->telp; ?></td>
+                                                    <td><?php echo ""; ?></td>
+                                                </tr>
+                                            <?php $i++;}} ?>
                                         </tbody>
                                     </table>
                                 </div>

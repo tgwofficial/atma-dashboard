@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i=0; $i < 25; $i++) { ?>
+                                            <?php if($this->ion_auth->in_group("demo")) { for ($i=0; $i < 25; $i++) { ?>
                                                 <tr>
                                                     <td><?php echo $i+1; ?></td>
                                                     <td><?php echo $faker->name('male'); ?></td>
@@ -38,7 +38,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo rand(2,7); ?></td>
                                                     <td><?php echo $faker->city; ?></td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php }} else{ $i=0; foreach ($trans as $key => $tran) { ?>
+                                                <tr>
+                                                    <td><?php echo $i+1; ?></td>
+                                                    <td><?php echo $tran->name; ?></td>
+                                                    <td><?php echo $tran->telp; ?></td>
+                                                    <td><?php echo $tran->jenis_kendaraan; ?></td>
+                                                    <td><?php echo $tran->kapasitas_kendaraan; ?></td>
+                                                    <td><?php echo $tran->dusun; ?></td>
+                                                </tr>
+                                            <?php $i++;}} ?>
                                         </tbody>
                                     </table>
                                 </div>

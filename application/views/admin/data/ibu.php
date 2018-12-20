@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i=0; $i < 100; $i++) { ?>
+                                            <?php if($this->ion_auth->in_group("demo")) { for ($i=0; $i < 100; $i++) { ?>
                                                 <tr>
                                                     <td><?php echo $i+1; ?></td>
                                                     <td><?php echo $faker->name('female'); ?></td>
@@ -58,7 +58,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo ['Hidup','Meninggal','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup'][rand(0,8)]; ?></td>
                                                     <td><?php echo ['Hidup','Meninggal','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup','Hidup'][rand(0,8)]; ?></td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php }} else{ $i=0; foreach ($ibus as $key => $ibu) { ?>
+                                                <tr>
+                                                    <td><?php echo $i+1; ?></td>
+                                                    <td><?php echo $ibu->nama; ?></td>
+                                                    <td><?php echo $ibu->spousename; ?></td>
+                                                    <td><?php echo $ibu->tgl_lahir; ?></td>
+                                                    <td><?php echo $ibu->dusunasal; ?></td>
+                                                    <td><?php echo $ibu->telpon; ?></td>
+                                                    <td><?php echo $ibu->gol_darah; ?></td>
+                                                    <td><?php echo $ibu->status_bersalin; ?></td>
+                                                    <td><?php echo $ibu->hpht; ?></td>
+                                                    <td><?php echo $ibu->htp; ?></td>
+                                                    <td><?php echo $ibu->resiko; ?></td>
+                                                    <td><?php echo $ibu->jenis_kendaraan; ?></td>
+                                                    <td><?php echo $ibu->hubungan_pendonor; ?></td>
+                                                    <td><?php echo $ibu->tgl_persalinan; ?></td>
+                                                    <td><?php echo $ibu->kondisi_ibu; ?></td>
+                                                    <td><?php echo $ibu->kondisi_anak; ?></td>
+                                                </tr>
+                                            <?php $i++;}} ?>
                                         </tbody>
                                     </table>
                                 </div>
