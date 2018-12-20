@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             ?>
                                                 <tr>
                                                     <td><?php echo $i+1; ?></td>
-                                                    <td><?php echo $bank->name; ?></td>
+                                                    <td><?php echo $bank->name_pendonor; ?></td>
                                                     <td><?php echo $gol[0]; ?></td>
                                                     <td><?php echo $gol[1]; ?></td>
                                                     <td><?php echo $bank->dusun; ?></td>
