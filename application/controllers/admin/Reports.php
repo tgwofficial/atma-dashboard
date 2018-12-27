@@ -9,6 +9,7 @@ class Reports extends Admin_Controller {
 
         /* Load :: Common */
         $this->lang->load('admin/users');
+        $this->load->model('data/datamodel','datamodel');
 
         /* Title Page :: Common */
         $this->page_title->push('Reports');
@@ -51,6 +52,8 @@ class Reports extends Admin_Controller {
         }
         else
         {
+            $this->data['userinfo'] = $this->datamodel->getLoginInfo($this->session->userdata('username'));
+            // var_dump($this->data['userinfo']);exit;
             /* Breadcrumbs */
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
@@ -74,6 +77,7 @@ class Reports extends Admin_Controller {
         }
         else
         {
+            $this->data['userinfo'] = $this->datamodel->getLoginInfo($this->session->userdata('username'));
             /* Breadcrumbs */
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 

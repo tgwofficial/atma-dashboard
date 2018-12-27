@@ -13,9 +13,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="form-row">
                             <div class="form-group col-md-4">
+                                <label for="<?=$userinfo['user_location']['tag_name']?>"><?=$userinfo['user_location']['description']?></label>
+                                <select id="<?=$userinfo['user_location']['tag_name']?>" class="form-control opt">
+                                    <option><?=$userinfo['user_location']['name']?></option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="kecamatan">Kecamatan</label>
+                                <select id="kecamatan" class="form-control">
+                                    <option value="0">-- Please Select --</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label for="desa">Desa</label>
-                                <select id="desa" class="form-control opt">
-                                    <option>Selebung</option>
+                                <select id="desa" class="form-control">
+                                    <option value="0">-- Please Select --</option>
                                 </select>
                             </div>
                         </div>
@@ -27,26 +39,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="form-group col-md-4">
                                 <label for="tahun">Tahun</label>
                                 <select id="tahun" class="form-control opt">
-                                    <option>2018</option>
-                                    <option>2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="bulan">Bulan</label>
                                 <select id="bulan" class="form-control opt">
-                                    <option>Januari</option>
-                                    <option>Februari</option>
-                                    <option>Maret</option>
-                                    <option>April</option>
-                                    <option>Mei</option>
-                                    <option>Juni</option>
-                                    <option>Juli</option>
-                                    <option>Agustus</option>
-                                    <option>September</option>
-                                    <option>Oktober</option>
-                                    <option>November</option>
-                                    <option>Desember</option>
-                                    <option>Tahunan</option>
+                                    <option value="01">Januari</option>
+                                    <option value="02">Februari</option>
+                                    <option value="03">Maret</option>
+                                    <option value="04">April</option>
+                                    <option value="05">Mei</option>
+                                    <option value="06">Juni</option>
+                                    <option value="07">Juli</option>
+                                    <option value="08">Agustus</option>
+                                    <option value="09">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                    <option value="99">Tahunan</option>
                                 </select>
                             </div>
                         </div>
@@ -64,26 +76,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <thead>
                                             <tr>
                                                 <th>Dusun</th>
-                                                <th>Jumlah Ibu Hamil</th>
-                                                <th>Jumlah Ibu Nifas</th>
-                                                <th>Jumlah Ibu Meninggal</th>
-                                                <th>Jumlah Bayi Lahir</th>
-                                                <th>Jumlah Bayi Meninggal</th>
+                                                <th>Ibu Hamil Baru</th>
+                                                <th>Ibu Hamil Aktif</th>
+                                                <th>Ibu Bersalin</th>
+                                                <th>Ibu Meninggal</th>
+                                                <th>Bayi Lahir</th>
+                                                <th>Bayi Meninggal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php 
-                                            $dusuns = ["Menges","Penandak","Menyiuh","Selebung Lauk","Selebung Daye","Selebung Tengak","Melar","Jali","Nyangget Lauk","Nyangget Daye","Pucung","Mekar Sari"];
-                                            foreach ($dusuns as $key => $dusun) { ?>
-                                                <tr>
-                                                    <td><?php echo $dusun ?></td>
-                                                    <td class="val1"><?php echo rand(0,10); ?></td>
-                                                    <td class="val2"><?php echo rand(0,10); ?></td>
-                                                    <td class="val3"><?php echo rand(0,2); ?></td>
-                                                    <td class="val4"><?php echo rand(0,10); ?></td>
-                                                    <td class="val5"><?php echo rand(0,2); ?></td>
-                                                </tr>
-                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -119,91 +120,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ]
                     });
 
-                    $('.opt').change(function() {
-                        if($('#bulan').val() == "Tahunan"){
-                            $('.val1').each(function(){
-                                $(this).html((Math.floor(Math.random() * 16) + 6)*9);
+                    $.ajax( "http://localhost/server/api/location/child?location-id=<?=$userinfo['user_location']['location_id']?>" )
+                        .done(function(result) {
+                            var ids = new Array();
+                            $.each( result, function( key, loc ){
+                                $('#kecamatan').append($('<option>', {value:loc.location_id, text:loc.name}));
+                                ids.push(loc.location_id);
                             });
-                            $('.val2').each(function(){
-                                $(this).html((Math.floor(Math.random() * 16) + 6)*9);
-                            });
-                            $('.val3').each(function(){
-                                $(this).html((Math.floor(Math.random() * 2) + 0)*2);
-                            });
-                            $('.val4').each(function(){
-                                $(this).html((Math.floor(Math.random() * 16) + 6)*9);
-                            });
-                            $('.val5').each(function(){
-                                $(this).html((Math.floor(Math.random() * 2) + 0)*2);
-                            });
-                            myTable.destroy();
-                            myTable = $('#myTable').DataTable({
-                                "scrollX": true,
-                                "autoWidth": false,
-                                columnDefs: [
-                                    { width: 100, targets: 5 }
-                                ],
-                                fixedColumns: true,
-                                scrollCollapse: true,
-                                dom: 'lfrtBip',
-                                buttons: [
-                                {
-                                    extend: 'excel',
-                                    title: $('#myTable').attr("title")
-                                },
-                                {
-                                    extend: 'pdf',
-                                    title: $('#myTable').attr("title")
-                                },
-                                {
-                                    extend: 'print',
-                                    title: $('#myTable').attr("title")
-                                }
-                                ]
+                            $('#kecamatan').val(ids[0]).change();
+                        });
+
+                    $('#kecamatan').change(function() {
+                        if($('#kecamatan').val() != "0"){
+                            $("#desa").html("<option value='0'>-- Please Select --</option>");
+                            $.ajax( "http://localhost/server/api/location/child?location-id="+$('#kecamatan').val() )
+                            .done(function(result) {
+                                var ids = new Array();
+                                $.each( result, function( key, loc ){
+                                    $('#desa').append($('<option>', {value:loc.location_id, text:loc.name}));
+                                    ids.push(loc.location_id);
+                                });
+                                $('#desa').val(ids[0]).change();
                             });
                         }
-                        else{
-                            $('.val1').each(function(){
-                                $(this).html(Math.floor(Math.random() * 16) + 6);
-                            });
-                            $('.val2').each(function(){
-                                $(this).html(Math.floor(Math.random() * 16) + 6);
-                            });
-                            $('.val3').each(function(){
-                                $(this).html(Math.floor(Math.random() * 2) + 0);
-                            });
-                            $('.val4').each(function(){
-                                $(this).html(Math.floor(Math.random() * 16) + 6);
-                            });
-                            $('.val5').each(function(){
-                                $(this).html(Math.floor(Math.random() * 2) + 0);
-                            });
-                            myTable.destroy();
-                            myTable = $('#myTable').DataTable({
-                                "scrollX": true,
-                                "autoWidth": false,
-                                columnDefs: [
-                                    { width: 100, targets: 5 }
-                                ],
-                                fixedColumns: true,
-                                scrollCollapse: true,
-                                dom: 'lfrtBip',
-                                buttons: [
-                                {
-                                    extend: 'excel',
-                                    title: $('#myTable').attr("title")
-                                },
-                                {
-                                    extend: 'pdf',
-                                    title: $('#myTable').attr("title")
-                                },
-                                {
-                                    extend: 'print',
-                                    title: $('#myTable').attr("title")
-                                }
-                                ]
-                            });
+                        
+                    });
+
+                    $('#desa').change(function() {
+                        if($('#desa').val() != "0"){
+                            get_data();
                         }
                     });
-                } );
+
+                    $('.opt').change(function() {
+                        get_data();
+                    });
+
+                    function get_data(){
+                        $.ajax( "http://localhost/server/api/data/reports/child?location-id="+$('#desa').val()+"&t="+$('#tahun').val()+"&b="+$('#bulan').val() )
+                        .done(function(result) {
+                            myTable.destroy();
+                            $('#myTable tbody').html("");
+                            $.each( result, function( key, loc ){
+                                $('#myTable tbody').append(
+                                    "<tr>"+
+                                    "<td>"+loc.name+"</td>"+
+                                    "<td>"+loc.data.ibu_hamil_baru+"</td>"+
+                                    "<td>"+loc.data.ibu_hamil_aktif+"</td>"+
+                                    "<td>"+loc.data.ibu_bersalin+"</td>"+
+                                    "<td>"+loc.data.ibu_meninggal+"</td>"+
+                                    "<td>"+loc.data.bayi_lahir+"</td>"+
+                                    "<td>"+loc.data.bayi_meninggal+"</td>"+
+                                    "</tr>");
+                            });
+                            myTable = $('#myTable').DataTable({
+                                "scrollX": true,
+                                "autoWidth": false,
+                                columnDefs: [
+                                    { width: 100, targets: 5 }
+                                ],
+                                fixedColumns: true,
+                                scrollCollapse: true,
+                                dom: 'lfrtBip',
+                                buttons: [
+                                {
+                                    extend: 'excel',
+                                    title: $('#myTable').attr("title")
+                                },
+                                {
+                                    extend: 'pdf',
+                                    title: $('#myTable').attr("title")
+                                },
+                                {
+                                    extend: 'print',
+                                    title: $('#myTable').attr("title")
+                                }
+                                ]
+                            });
+                        });
+                    }
+                });
             </script>
