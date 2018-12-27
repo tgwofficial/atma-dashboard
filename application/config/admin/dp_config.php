@@ -34,3 +34,5 @@ $config['breadcrumb_el_first'] = '<i class="fa fa-dashboard"></i>';
 $config['breadcrumb_el_last']  = '<li class="active">';
 
 
+
+$config['atma_api_url']   = 'http://localhost/server/';

@@ -95,6 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <script type="text/javascript">
                 $(document).ready( function () {
+                    var base_url = "<?=$atma_api_url?>";
                     var myTable = $('#myTable').DataTable({
                         "scrollX": true,
                         "autoWidth": false,
@@ -120,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ]
                     });
 
-                    $.ajax( "http://localhost/server/api/location/child?location-id=<?=$userinfo['user_location']['location_id']?>" )
+                    $.ajax( base_url+"api/location/child?location-id=<?=$userinfo['user_location']['location_id']?>" )
                         .done(function(result) {
                             var ids = new Array();
                             $.each( result, function( key, loc ){
@@ -133,7 +134,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $('#kecamatan').change(function() {
                         if($('#kecamatan').val() != "0"){
                             $("#desa").html("<option value='0'>-- Please Select --</option>");
-                            $.ajax( "http://localhost/server/api/location/child?location-id="+$('#kecamatan').val() )
+                            $.ajax( base_url+"api/location/child?location-id="+$('#kecamatan').val() )
                             .done(function(result) {
                                 var ids = new Array();
                                 $.each( result, function( key, loc ){
@@ -157,7 +158,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     });
 
                     function get_data(){
-                        $.ajax( "http://localhost/server/api/data/reports/child?location-id="+$('#desa').val()+"&t="+$('#tahun').val()+"&b="+$('#bulan').val() )
+                        $.ajax( base_url+"api/data/reports/child?location-id="+$('#desa').val()+"&t="+$('#tahun').val()+"&b="+$('#bulan').val() )
                         .done(function(result) {
                             myTable.destroy();
                             $('#myTable tbody').html("");

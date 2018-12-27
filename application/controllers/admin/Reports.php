@@ -14,6 +14,7 @@ class Reports extends Admin_Controller {
         /* Title Page :: Common */
         $this->page_title->push('Reports');
         $this->data['pagetitle'] = $this->page_title->show();
+        $this->data['atma_api_url'] = $this->config->item('atma_api_url');
 
         /* Breadcrumbs :: Common */
         $this->breadcrumbs->unshift(1, 'Reports', 'admin/reports');
