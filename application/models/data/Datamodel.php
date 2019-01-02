@@ -10,15 +10,15 @@ class Datamodel extends CI_Model {
 
 
     public function get_data_ibu(){  
-        return $this->db->query("SELECT data_identitas_ibu.name as nama,data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id")->result();
+        return $this->db->query("SELECT data_identitas_ibu.name as nama,data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id LEFT JOIN (SELECT * FROM data_identitas_ibu_edit WHERE id IN (SELECT MAX(id) FROM data_identitas_ibu_edit GROUP BY unique_id)) edit ON data_identitas_ibu.unique_id=edit.unique_id")->result();
     }
 
     public function get_data_transportasi(){  
-        return $this->db->query("SELECT * FROM data_transportasi")->result();
+        return $this->db->query("SELECT * FROM data_transportasi LEFT JOIN (SELECT * FROM data_transportasi_edit WHERE id IN (SELECT MAX(id) FROM data_transportasi_edit GROUP BY unique_id)) edit ON data_transportasi.unique_id=edit.unique_id")->result();
     }
 
     public function get_data_bank_darah(){  
-        return $this->db->query("SELECT * FROM data_bank_darah")->result();
+        return $this->db->query("SELECT * FROM data_bank_darah LEFT JOIN (SELECT * FROM data_bank_darah_edit WHERE id IN (SELECT MAX(id) FROM data_bank_darah_edit GROUP BY unique_id)) edit ON data_bank_darah.unique_id=edit.unique_id")->result();
     }
 
     public function getLoginInfo($username) {
