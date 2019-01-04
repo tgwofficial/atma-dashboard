@@ -17,6 +17,22 @@ class Datamodel extends CI_Model {
             $ids[] = $ibu->uniqueid;
             $res[$ibu->uniqueid] = $ibu;
         }
+        $ibus_edit = $this->db->query("SELECT * FROM (SELECT * FROM data_rencana_persalinan_edit WHERE id IN (SELECT MAX(id) FROM data_rencana_persalinan_edit GROUP BY id_ibu)) edit WHERE id_ibu IN ('".implode("','", $ids)."')")->result();
+        foreach ($ibus_edit as $edt) {
+            if (array_key_exists($edt->id_ibu, $res)) {
+                foreach ($edt as $key => $value) {
+                    $res[$edt->id_ibu]->$key = $value;
+                }
+            }
+        }
+        $ibus_edit = $this->db->query("SELECT * FROM (SELECT * FROM data_status_persalinan_edit WHERE id IN (SELECT MAX(id) FROM data_status_persalinan_edit GROUP BY id_ibu)) edit WHERE id_ibu IN ('".implode("','", $ids)."')")->result();
+        foreach ($ibus_edit as $edt) {
+            if (array_key_exists($edt->id_ibu, $res)) {
+                foreach ($edt as $key => $value) {
+                    $res[$edt->id_ibu]->$key = $value;
+                }
+            }
+        }
         $ibus_edit = $this->db->query("SELECT * FROM (SELECT * FROM data_identitas_ibu_edit WHERE id IN (SELECT MAX(id) FROM data_identitas_ibu_edit GROUP BY unique_id)) edit WHERE unique_id IN ('".implode("','", $ids)."')")->result();
         foreach ($ibus_edit as $edt) {
             if (array_key_exists($edt->unique_id, $res)) {
