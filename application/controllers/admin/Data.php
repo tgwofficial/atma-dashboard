@@ -59,7 +59,8 @@ class Data extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             // /* Get all ibu */
-            $this->data['ibus'] = $this->datamodel->get_data_ibu();
+            $this->data['userinfo'] = $this->datamodel->getLoginInfo($this->session->userdata('username'));
+            $this->data['ibus'] = $this->datamodel->get_data_ibu($this->data['userinfo']['child_locations']);
 
             /* Load Template */
             $this->template->admin_render('admin/data/ibu', $this->data);
@@ -81,7 +82,8 @@ class Data extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             // /* Get all users */
-            $this->data['banks'] = $this->datamodel->get_data_bank_darah();
+            $this->data['userinfo'] = $this->datamodel->getLoginInfo($this->session->userdata('username'));
+            $this->data['banks'] = $this->datamodel->get_data_bank_darah($this->data['userinfo']['child_locations']);
 
             /* Load Template */
             $this->template->admin_render('admin/data/bank_darah', $this->data);
@@ -103,7 +105,8 @@ class Data extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
             // /* Get all users */
-            $this->data['trans'] = $this->datamodel->get_data_transportasi();
+            $this->data['userinfo'] = $this->datamodel->getLoginInfo($this->session->userdata('username'));
+            $this->data['trans'] = $this->datamodel->get_data_transportasi($this->data['userinfo']['child_locations']);
 
             /* Load Template */
             $this->template->admin_render('admin/data/transportasi', $this->data);

@@ -9,8 +9,13 @@ class Datamodel extends CI_Model {
     }
 
 
-    public function get_data_ibu(){  
-        $ibus = $this->db->query("SELECT data_identitas_ibu.name as nama, data_identitas_ibu.unique_id as uniqueid, data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id LEFT JOIN data_close_ibu ON data_identitas_ibu.unique_id=data_close_ibu.unique_id WHERE data_close_ibu.alasan IS NULL")->result();
+    public function get_data_ibu($locations){  
+        $locs = [];
+        foreach ($locations as $loc) {
+            $locs[] = $loc['name'];
+        }
+        $ibus = $this->db->query("SELECT data_identitas_ibu.name as nama, data_identitas_ibu.unique_id as uniqueid, data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id LEFT JOIN data_close_ibu ON data_identitas_ibu.unique_id=data_close_ibu.unique_id WHERE data_close_ibu.alasan IS NULL
+            AND data_identitas_ibu.dusun IN ('".implode("','", $locs)."')")->result();
         $ids = [];
         $res = [];
         foreach ($ibus as $ibu) {
@@ -42,12 +47,15 @@ class Datamodel extends CI_Model {
             }
         }
         return $res;
-
-        return $this->db->query("SELECT data_identitas_ibu.name as nama,data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id LEFT JOIN (SELECT * FROM data_identitas_ibu_edit WHERE id IN (SELECT MAX(id) FROM data_identitas_ibu_edit GROUP BY unique_id)) edit ON data_identitas_ibu.unique_id=edit.unique_id")->result();
     }
 
-    public function get_data_transportasi(){  
-        $trans = $this->db->query("SELECT * FROM data_transportasi")->result();
+    public function get_data_transportasi($locations){ 
+        $locs = [];
+        foreach ($locations as $loc) {
+            $locs[] = $loc['name'];
+        }
+
+        $trans = $this->db->query("SELECT * FROM data_transportasi WHERE data_transportasi.dusun IN ('".implode("','", $locs)."')")->result();
         $ids = [];
         $res = [];
         foreach ($trans as $tran) {
@@ -65,8 +73,13 @@ class Datamodel extends CI_Model {
         return $res;
     }
 
-    public function get_data_bank_darah(){  
-        $banks = $this->db->query("SELECT * FROM data_bank_darah")->result();
+    public function get_data_bank_darah($locations){  
+        $locs = [];
+        foreach ($locations as $loc) {
+            $locs[] = $loc['name'];
+        }
+
+        $banks = $this->db->query("SELECT * FROM data_bank_darah WHERE data_bank_darah.dusun IN ('".implode("','", $locs)."')")->result();
         $ids = [];
         $res = [];
         foreach ($banks as $bank) {
@@ -107,17 +120,11 @@ class Datamodel extends CI_Model {
         $loc = $this->db->get('location')->row_array();
         $res['user_location'] = $loc;
 
-        // $locs = [];
-        // $locs[] = $loc;
-        // while($loc['parent_location']!=NULL){
-        //     $loc = $this->getParentLocation($loc);
-        //     $locs[] = $loc;
-        // }
-        // $locs = array_reverse($locs);
-        // $locs = $this->getChildLocations($locs,$res['user_location']);
+        $locs = [];
+        $locs = $this->getChildLocations($locs,$res['user_location']);
         
 
-        // $res['locations_tree'] = $locs;
+        $res['child_locations'] = $locs;
 
         return $res;
     }
