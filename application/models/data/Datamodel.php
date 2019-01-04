@@ -10,15 +10,62 @@ class Datamodel extends CI_Model {
 
 
     public function get_data_ibu(){  
+        $ibus = $this->db->query("SELECT data_identitas_ibu.name as nama, data_identitas_ibu.unique_id as uniqueid, data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id LEFT JOIN data_close_ibu ON data_identitas_ibu.unique_id=data_close_ibu.unique_id WHERE data_close_ibu.alasan IS NULL")->result();
+        $ids = [];
+        $res = [];
+        foreach ($ibus as $ibu) {
+            $ids[] = $ibu->uniqueid;
+            $res[$ibu->uniqueid] = $ibu;
+        }
+        $ibus_edit = $this->db->query("SELECT * FROM (SELECT * FROM data_identitas_ibu_edit WHERE id IN (SELECT MAX(id) FROM data_identitas_ibu_edit GROUP BY unique_id)) edit WHERE unique_id IN ('".implode("','", $ids)."')")->result();
+        foreach ($ibus_edit as $edt) {
+            if (array_key_exists($edt->unique_id, $res)) {
+                foreach ($edt as $key => $value) {
+                    $res[$edt->unique_id]->$key = $value;
+                }
+            }
+        }
+        return $res;
+
         return $this->db->query("SELECT data_identitas_ibu.name as nama,data_identitas_ibu.dusun as dusunasal,data_identitas_ibu.telp as telpon, data_identitas_ibu.*, data_rencana_persalinan.*, data_status_persalinan.*, data_transportasi.* FROM data_identitas_ibu LEFT JOIN data_rencana_persalinan ON data_identitas_ibu.unique_id=data_rencana_persalinan.id_ibu LEFT JOIN data_status_persalinan ON data_identitas_ibu.unique_id=data_status_persalinan.id_ibu LEFT JOIN data_transportasi ON data_rencana_persalinan.id_trans=data_transportasi.unique_id LEFT JOIN (SELECT * FROM data_identitas_ibu_edit WHERE id IN (SELECT MAX(id) FROM data_identitas_ibu_edit GROUP BY unique_id)) edit ON data_identitas_ibu.unique_id=edit.unique_id")->result();
     }
 
     public function get_data_transportasi(){  
-        return $this->db->query("SELECT * FROM data_transportasi LEFT JOIN (SELECT * FROM data_transportasi_edit WHERE id IN (SELECT MAX(id) FROM data_transportasi_edit GROUP BY unique_id)) edit ON data_transportasi.unique_id=edit.unique_id")->result();
+        $trans = $this->db->query("SELECT * FROM data_transportasi")->result();
+        $ids = [];
+        $res = [];
+        foreach ($trans as $tran) {
+            $ids[] = $tran->unique_id;
+            $res[$tran->unique_id] = $tran;
+        }
+        $trans_edit = $this->db->query("SELECT * FROM (SELECT * FROM data_transportasi_edit WHERE id IN (SELECT MAX(id) FROM data_transportasi_edit GROUP BY unique_id)) edit WHERE unique_id IN ('".implode("','", $ids)."')")->result();
+        foreach ($trans_edit as $edt) {
+            if (array_key_exists($edt->unique_id, $res)) {
+                foreach ($edt as $key => $value) {
+                    $res[$edt->unique_id]->$key = $value;
+                }
+            }
+        }
+        return $res;
     }
 
     public function get_data_bank_darah(){  
-        return $this->db->query("SELECT * FROM data_bank_darah LEFT JOIN (SELECT * FROM data_bank_darah_edit WHERE id IN (SELECT MAX(id) FROM data_bank_darah_edit GROUP BY unique_id)) edit ON data_bank_darah.unique_id=edit.unique_id")->result();
+        $banks = $this->db->query("SELECT * FROM data_bank_darah")->result();
+        $ids = [];
+        $res = [];
+        foreach ($banks as $bank) {
+            $ids[] = $bank->unique_id;
+            $res[$bank->unique_id] = $bank;
+        }
+        $banks_edit = $this->db->query("SELECT * FROM (SELECT * FROM data_bank_darah_edit WHERE id IN (SELECT MAX(id) FROM data_bank_darah_edit GROUP BY unique_id)) edit WHERE unique_id IN ('".implode("','", $ids)."')")->result();
+        foreach ($banks_edit as $edt) {
+            if (array_key_exists($edt->unique_id, $res)) {
+                foreach ($edt as $key => $value) {
+                    $res[$edt->unique_id]->$key = $value;
+                }
+            }
+        }
+        return $res;
     }
 
     public function getLoginInfo($username) {
