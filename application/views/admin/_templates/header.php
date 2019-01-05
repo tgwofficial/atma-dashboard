@@ -7,7 +7,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131761448-1"></script>
-        <script src="<?php echo base_url($plugins_dir . '/analytics/gtag.js'); ?>"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            
+            gtag('js', new Date());
+            gtag('config', 'UA-131761448-1',{
+                <?php 
+                if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+                {
+                    echo "'user_id': 'Anonymous'";
+                }
+                else
+                {
+                    echo "'user_id': '".$this->session->userdata('username')."'";
+                }
+                ?>
+            });
+            // gtag('event', 'load_time_metric', {'avg_page_load_time': 1});
+        </script>
         <meta charset="<?php echo $charset; ?>">
         <title><?php echo $title; ?></title>
 <?php if ($mobile === FALSE): ?>
