@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!doctype html>
 <html lang="<?php echo $lang; ?>">
     <head>
+        <script src="<?php echo base_url($plugins_dir . '/analytics/gtag.js'); ?>"></script>
         <meta charset="<?php echo $charset; ?>">
         <title><?php echo $title; ?></title>
 <?php if ($mobile === FALSE): ?>
