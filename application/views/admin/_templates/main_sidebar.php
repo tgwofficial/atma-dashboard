@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </a>
                         </li>
 
-
+                        <?php if ($this->ion_auth->in_group('super_admin')): ?>
                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
                         <li class="<?=active_link_controller('users')?>">
                             <a href="<?php echo site_url('admin/users'); ?>">
@@ -80,6 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
                             </a>
                         </li>
+                        <?php endif; ?>
                     </ul>
                 </section>
             </aside>
