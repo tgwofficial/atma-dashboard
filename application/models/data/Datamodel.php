@@ -8,6 +8,14 @@ class Datamodel extends CI_Model {
         parent::__construct();
     }
 
+    public function get_master_data($locations){  
+        $locs = [];
+        foreach ($locations as $loc) {
+            $locs[] = $loc['name'];
+        }
+        return $this->db->query("SELECT * FROM updates WHERE dusun IN ('".implode("','", $locs)."') ORDER BY update_id")->result();
+    }
+
 
     public function get_data_ibu($locations){  
         $locs = [];

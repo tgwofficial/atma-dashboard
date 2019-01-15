@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
         <script src="<?php echo base_url($frameworks_dir . '/adminlte/js/adminlte.min.js'); ?>"></script>
         <script src="<?php echo base_url($frameworks_dir . '/domprojects/js/dp.min.js'); ?>"></script>
-<?php if ($this->router->fetch_class() == 'reports' || $this->router->fetch_class() == 'data'): ?>
+<?php if ($this->router->fetch_class() == 'reports' || $this->router->fetch_class() == 'data'|| $this->router->fetch_class() == 'master'): ?>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

@@ -70,6 +70,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <?php if ($this->ion_auth->in_group('super_admin')): ?>
                         <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
+                        <li class="<?=active_link_controller('master')?>">
+                            <a href="<?php echo site_url('admin/master/data'); ?>">
+                                <i class="fa fa-user"></i> <span>Master Data</span>
+                            </a>
+                        </li>
                         <li class="<?=active_link_controller('users')?>">
                             <a href="<?php echo site_url('admin/users'); ?>">
                                 <i class="fa fa-user"></i> <span><?php echo lang('menu_users'); ?></span>
