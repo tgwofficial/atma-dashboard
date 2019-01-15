@@ -101,14 +101,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         {
                             extend: 'excel',
                             title: $('#myTable').attr("title")
-                        },
-                        {
-                            extend: 'pdf',
-                            title: $('#myTable').attr("title")
-                        },
-                        {
-                            extend: 'print',
-                            title: $('#myTable').attr("title")
                         }
                         ]
                     });
