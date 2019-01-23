@@ -18,6 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <thead>
                                             <tr>
                                                 <th>Created On</th>
+                                                <th>Unique ID</th>
                                                 <th>Form Name</th>
                                                 <th>Data</th>
                                                 <th>Desa</th>
@@ -33,6 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              ?>
                                                 <tr>
                                                     <td><?php echo $time; ?></td>
+                                                    <td><?php echo $fields->unique_id; ?></td>
                                                     <td><?php echo $data->form_name; ?></td>
                                                     <td><?php foreach ($fields as $key => $value) {
                                                         echo $key." : ".$value.",<br>";
