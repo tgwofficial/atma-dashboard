@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                              ?>
                                                 <tr>
                                                     <td><?php echo $time; ?></td>
-                                                    <td><?php echo $fields->unique_id; ?></td>
+                                                    <td><?php echo isset($fields->unique_id)?$fields->unique_id:$fields->id_ibu; ?></td>
                                                     <td><?php echo $data->form_name; ?></td>
                                                     <td><?php foreach ($fields as $key => $value) {
                                                         echo $key." : ".$value.",<br>";
