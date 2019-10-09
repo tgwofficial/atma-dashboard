@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $ibu->dusunasal; ?></td>
                                                     <td><?php echo $ibu->telpon; ?></td>
                                                     <td><?php echo $ibu->gol_darah; ?></td>
-                                                    <td><?php echo $ibu->status_bersalin==0||$ibu->status_bersalin==""?$ibu->status_bersalin==0?"hamil":"nifas":$ibu->status_bersalin; ?></td>
+                                                    <td><?php echo $ibu->status_bersalin==null?"hamil":($ibu->alasan=='nifas berakhir'?"nifas berakhir":"nifas"); ?></td>
                                                     <td><?php echo $ibu->hpht; ?></td>
                                                     <td><?php echo $ibu->htp; ?></td>
                                                     <td><?php echo $ibu->resiko; ?></td>
